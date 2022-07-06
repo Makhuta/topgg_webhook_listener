@@ -2,7 +2,8 @@ const { MessageBuilder } = require("discord-webhook-node");
 
 module.exports = function (vote) {
   let timestamp = Math.round(Date.now() / 1000);
-  let nextVoteTimestamp = timestamp + 43200000;
+  let nextVoteTimestamp = timestamp + 43200;
+  console.info({ timestamp, nextVoteTimestamp });
   return new MessageBuilder()
     .setTitle(`Voted`)
     .setURL(`https://top.gg/bot/${process.env.TOPGGID}`)
