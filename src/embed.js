@@ -10,7 +10,9 @@ module.exports = function (vote) {
     .addField("User:", `<@${vote.user}>`, true)
     .addField("Bot:", `<@${vote.bot}>`, true)
     .addField("Voted at:", `<t:${timestamp}:f>`, true)
-    .addField("Can vote again at:", `<t:${nextVoteTimestamp}:f>`, true)
+    .addField("Can vote again at:", `<t:${nextVoteTimestamp}:R>`, true)
+    .addField("Total Votes:", `TBD`, true)
+    .addField("Is weekend:", vote.isWeekend.toString().replace("true", "✅").replace("false", "❌"), true)
 
     .setColor("RANDOM")
     .setThumbnail("https://cdn.discordapp.com/embed/avatars/0.png")
