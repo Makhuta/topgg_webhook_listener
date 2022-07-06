@@ -1,7 +1,7 @@
 const express = require("express");
 const { Webhook } = require(`@top-gg/sdk`);
-const { Webhook, MessageBuilder } = require("discord-webhook-node");
-const hook = new Webhook(process.env.DISCORDWEBHOOKURL);
+const discordWebhook = require("discord-webhook-node");
+const hook = new discordWebhook.Webhook(process.env.DISCORDWEBHOOKURL);
 
 const port = process.env.PORT || 3000;
 
@@ -11,7 +11,7 @@ const wh = new Webhook(process.env.WEBHOOKAUTH);
 app.post(
   "/dblwebhook",
   wh.listener((vote) => {
-    let embed = new MessageBuilder()
+    let embed = new discordWebhook.MessageBuilder()
       .setTitle("My title here")
       .setAuthor("Author here", "https://cdn.discordapp.com/embed/avatars/0.png", "https://www.google.com")
       .setURL("https://www.google.com")
@@ -25,7 +25,7 @@ app.post(
       .setTimestamp();
 
     hook.send(embed);
-    
+
     console.log(vote.user); // => 321714991050784770
   })
 );
