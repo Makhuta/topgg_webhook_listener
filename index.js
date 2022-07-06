@@ -1,17 +1,31 @@
 const express = require("express");
 const { Webhook } = require(`@top-gg/sdk`);
-const { WebhookClient } = require("discord.js");
+const { Webhook, MessageBuilder } = require("discord-webhook-node");
+const hook = new Webhook(process.env.DISCORDWEBHOOKURL);
 
 const port = process.env.PORT || 3000;
 
 const app = express();
 const wh = new Webhook(process.env.WEBHOOKAUTH);
-const discordWH = new WebhookClient(process.env.DISCORDWEBHOOKID, process.env.DISCORDWEBHOOKTOKEN);
 
 app.post(
   "/dblwebhook",
   wh.listener((vote) => {
-    webhook.send("Hello world.").catch(console.error);
+    let embed = new MessageBuilder()
+      .setTitle("My title here")
+      .setAuthor("Author here", "https://cdn.discordapp.com/embed/avatars/0.png", "https://www.google.com")
+      .setURL("https://www.google.com")
+      .addField("First field", "this is inline", true)
+      .addField("Second field", "this is not inline")
+      .setColor("#00b0f4")
+      .setThumbnail("https://cdn.discordapp.com/embed/avatars/0.png")
+      .setDescription("Oh look a description :)")
+      .setImage("https://cdn.discordapp.com/embed/avatars/0.png")
+      .setFooter("Hey its a footer", "https://cdn.discordapp.com/embed/avatars/0.png")
+      .setTimestamp();
+
+    hook.send(embed);
+    
     console.log(vote.user); // => 321714991050784770
   })
 );
