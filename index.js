@@ -1,14 +1,14 @@
-const express = require("express")
-const bodyParser = require("body-parser")
-const app = express();
-app.use(bodyParser.json())
+const express = require('express')
+const { Webhook } = require(`@top-gg/sdk`)
 
 const port = process.env.PORT || 3000
 
-app.post("/dialogflow-fulfillment", (request, response) => {
-    console.info("test")
-})
+const app = express()
+const wh = new Webhook(process.env.WEBHOOKAUTH)
 
-app.listen(port, () => {
-    console.info(`Listening on port ${port}`)
-})
+app.post('/dblwebhook', wh.listener(vote => {
+  // vote is your vote object e.g
+  console.log(vote.user) // => 321714991050784770
+}))
+
+app.listen(port)
