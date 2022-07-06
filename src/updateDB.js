@@ -10,6 +10,10 @@ module.exports = async function (vote) {
     comboVotes = Userstats[vote.user].ComboVotes;
   }
 
+  if (comboVotes <= 0) {
+    comboVotes = vote.timestamp;
+  }
+
   if (vote.Userstats.existed) {
     sql = `UPDATE userstats SET lastvotetimestamp = ${vote.timestamp}, totalvotes = ${vote.Userstats.TotalVotes + 1}, combovotes = ${comboVotes} WHERE id = ${vote.user}`;
   } else {
