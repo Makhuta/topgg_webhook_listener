@@ -40,7 +40,7 @@ app.post(
     vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
     vote["Userstats"] = votedUser;
 
-    //if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return console.info(vote);
+    if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return;
 
     if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) < 86400) {
       vote.Userstats.ComboVotes += 1;
@@ -54,7 +54,6 @@ app.post(
 
     if (vote.type == "test") {
       require(join(SRC, "updateDB.js"))(vote);
-      hookTest.send(embed);
     } else {
       require(join(SRC, "updateDB.js"))(vote);
       hook.send(embed);
