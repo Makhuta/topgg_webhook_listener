@@ -1,7 +1,7 @@
 const { MessageBuilder } = require("discord-webhook-node");
 
 module.exports = function (vote) {
-  let timestamp = new Date.now();
+  let timestamp = Date.now();
   let nextVoteTimestamp = timestamp + 43200000;
   return new MessageBuilder()
     .setTitle(`Voted`)
