@@ -1,3 +1,4 @@
+const { join } = require("path");
 const DBExecuter = require(join(SRC, "DBExecuter.js"));
 
 module.exports = async function (vote) {
