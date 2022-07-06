@@ -53,7 +53,7 @@ app.post(
     let embed = require(join(SRC, "embed.js"))(vote);
 
     if (vote.type == "test") {
-      require(join(SRC, "updateDB.js"))(vote);
+      hookTest.send(embed);
     } else {
       require(join(SRC, "updateDB.js"))(vote);
       hook.send(embed);
