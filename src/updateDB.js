@@ -4,11 +4,6 @@ const DBExecuter = require(join(SRC, "DBExecuter.js"));
 module.exports = async function (vote) {
   let sql;
   let comboVotes;
-  if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400) {
-    vote.Userstats.ComboVotes + 1;
-    Userstats[vote.user].ComboVotes = +1;
-    comboVotes = Userstats[vote.user].ComboVotes;
-  }
 
   console.info({
     1: vote.Userstats.LastVoteTimestamp ,
