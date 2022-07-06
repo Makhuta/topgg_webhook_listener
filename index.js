@@ -26,7 +26,7 @@ app.post(
 
     hook.send(embed);
 
-    console.log(vote.user); // => 321714991050784770
+    console.log(vote);
   })
 );
 
