@@ -15,7 +15,8 @@ app.post(
   "/dblwebhook",
   wh.listener(async (vote) => {
     vote["isWeekend"] = (await api.isWeekend()).toString();
-    vote["numOfVotes"] = (await api.getVotes()).length;
+    vote["totalVotes"] = (await api.getVotes()).length;
+    vote["userInfo"] = await api.getUser(vote.user);
     let embed = require(join(__dirname, "src/embed.js"))(vote);
 
     if (vote.type == "test") {
@@ -23,8 +24,6 @@ app.post(
     } else {
       hook.send(embed);
     }
-
-    console.log(vote);
   })
 );
 
