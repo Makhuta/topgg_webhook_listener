@@ -43,7 +43,7 @@ app.post(
 
     //if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return console.info(vote);
 
-    Userstats[vote.user].Userstats.LastVoteTimestamp = vote.timestamp;
+    Userstats[vote.user].LastVoteTimestamp = vote.timestamp;
 
     let embed = require(join(SRC, "embed.js"))(vote);
 
