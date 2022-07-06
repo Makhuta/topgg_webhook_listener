@@ -3,7 +3,7 @@ const DBExecuter = require(join(SRC, "DBExecuter.js"));
 
 module.exports = async function (vote) {
   let sql;
-  let comboVotes;
+  let comboVotes = vote.Userstats.ComboVotes;
 
   console.info({
     1: vote.Userstats.LastVoteTimestamp ,
