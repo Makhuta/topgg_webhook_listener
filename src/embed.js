@@ -2,9 +2,9 @@ const { MessageBuilder } = require("discord-webhook-node");
 
 module.exports = function (vote) {
   return new MessageBuilder()
-    .setTitle(`[Voted](https://top.gg/bot/${process.env.TOPGGID})`)
+    .setTitle(`Voted`)
+    .setURL(`https://top.gg/bot/${process.env.TOPGGID}`)
     .setDescription(`<@${vote.user}> Voted for <@${vote.bot}>!`)
-    .setURL("https://www.google.com")
     .addField("First field", "this is inline", true)
     .addField("Second field", "this is not inline")
     .setColor("#00b0f4")
