@@ -11,8 +11,8 @@ module.exports = async function (vote) {
   }
 
   console.info({
-    1: Userstats[vote.user].ComboVotes,
-    2: comboVotes,
+    1: vote.Userstats.LastVoteTimestamp ,
+    2: vote.timestamp,
     3: Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400,
     4: Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp)
   });
