@@ -12,11 +12,13 @@ const wh = new Webhook(process.env.WEBHOOKAUTH);
 app.post(
   "/dblwebhook",
   wh.listener((vote) => {
-    let embed = require(join("./src", "embed.js"))(vote);
+    let embed = require(join(__dirname, "src/embed.js"))(vote);
     hook.send(embed);
 
     console.log(vote);
   })
 );
 
-app.listen(port);
+app.listen(port, () => {
+  console.info(`Listening on port ${port}`);
+});
