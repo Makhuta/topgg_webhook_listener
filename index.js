@@ -55,7 +55,7 @@ app.post(
     if (vote.type == "test") {
       hookTest.send(embed);
     } else {
-      require(join(SRC, "updateDB.js"))(vote);
+      await require(join(SRC, "updateDB.js"))(vote);
       hook.send(embed);
     }
   })
