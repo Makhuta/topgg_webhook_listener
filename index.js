@@ -14,9 +14,10 @@ const api = new Api(process.env.TOPGGTOKEN);
 app.post(
   "/dblwebhook",
   wh.listener(async (vote) => {
+    let AllVotes = await api.getVotes();
     vote["isWeekend"] = (await api.isWeekend()).toString();
-    vote["totalVotes"] = (await api.getVotes()).length;
-    vote["userInfo"] = await api.getUser(vote.user);
+    vote["totalVotes"] = AllVotes.length;
+    vote["Avatar"] = AllVotes.find((user) => user.id == vote.user);
     let embed = require(join(__dirname, "src/embed.js"))(vote);
 
     if (vote.type == "test") {
