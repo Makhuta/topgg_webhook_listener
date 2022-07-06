@@ -11,8 +11,8 @@ module.exports = function (vote) {
     .addField(
       { name: "User:", value: `<@${vote.user}>`, inline: true },
       { name: "Bot:", value: `<@${vote.bot}>`, inline: true },
-      { name: "Voted at:", value: `test<t:${timestamp}:f>`, inline: true },
-      { name: "Can vote again at:", value: `test<t:${nextVoteTimestamp}:R>`, inline: true }
+      //{ name: "Voted at:", value: `test<t:${timestamp}:f>`, inline: true },
+      //{ name: "Can vote again at:", value: `test<t:${nextVoteTimestamp}:R>`, inline: true }
     )
 
     .setColor("RANDOM")
