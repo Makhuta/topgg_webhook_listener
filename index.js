@@ -3,6 +3,7 @@ const express = require("express");
 require("dotenv").config();
 const { Webhook, Api } = require(`@top-gg/sdk`);
 const discordWebhook = require("discord-webhook-node");
+const { isUndefined } = require("util");
 const hook = new discordWebhook.Webhook(process.env.DISCORDWEBHOOKURL);
 const hookTest = new discordWebhook.Webhook(process.env.DISCORDWEBHOOKURLTEST);
 global.ROOT = __dirname;
@@ -21,14 +22,26 @@ app.post(
   wh.listener(async (vote) => {
     let timestamp = Math.round(Date.now() / 1000);
     let votedUser = Userstats[vote.user];
+
+    if (isUndefined(votedUser)) {
+      Userstats[vote.user] = {
+        id: parseInt(vote.user),
+        LastVoteTimestamp: 0,
+        TotalVotes: 0,
+        ComboVotes: 0,
+        existed: false
+      };
+      votedUser = Userstats[vote.user];
+    }
+
     let AllVotes = await api.getVotes();
     vote["timestamp"] = timestamp;
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
     vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
-    vote["Userstats"] = votedUser ? votedUser : { id: vote.user, LastVoteTimestamp: 0, TotalVotes: 0, ComboVotes: 0 };
+    vote["Userstats"] = votedUser;
 
-    if (vote["Userstats"].LastVoteTimestamp - vote.timestamp < 40000) return console.info(vote);
+    //if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return console.info(vote);
 
     Userstats[vote.user].Userstats.LastVoteTimestamp = vote.timestamp;
 

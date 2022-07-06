@@ -9,7 +9,8 @@ async function loadUsers() {
       id: parseInt(row.id),
       LastVoteTimestamp: parseInt(row.lastvotetimestamp),
       TotalVotes: parseInt(row.totalvotes),
-      ComboVotes: parseInt(row.combovotes)
+      ComboVotes: parseInt(row.combovotes),
+      existed: true
     };
   }
 }
