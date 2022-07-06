@@ -9,7 +9,6 @@ const hookTest = new discordWebhook.Webhook(process.env.DISCORDWEBHOOKURLTEST);
 global.ROOT = __dirname;
 global.SRC = join(ROOT, "src");
 global.Userstats = {};
-require(join(SRC, "dbinit.js"));
 
 const port = process.env.PORT || 3000;
 
@@ -58,5 +57,6 @@ app.post(
 );
 
 app.listen(port, () => {
+  require(join(SRC, "dbinit.js"));
   console.info(`Listening on port ${port}`);
 });
