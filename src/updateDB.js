@@ -15,6 +15,7 @@ module.exports = async function (vote) {
     sql = `INSERT INTO userstats (id, lastvotetimestamp, totalvotes, combovotes) VALUES (${vote.user}, ${vote.timestamp}, 1, 1)`;
   }
   console.info(sql);
+  console.info(vote)
   //await DBExecuter({sql})
 
   Userstats[vote.user].LastVoteTimestamp = vote.timestamp;
