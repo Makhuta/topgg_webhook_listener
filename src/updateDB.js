@@ -22,5 +22,5 @@ module.exports = async function (vote) {
   Userstats[vote.user].existed = true;
 
   Userstats[vote.user].LastVoteTimestamp = vote.timestamp;
-  Userstats[vote.user].TotalVotes = +1;
+  Userstats[vote.user].TotalVotes += 1;
 };
