@@ -16,6 +16,7 @@ module.exports = async function (vote) {
   }
   console.info(sql);
   console.info(vote)
+  console.info(Userstats)
   //await DBExecuter({sql})
 
   Userstats[vote.user].LastVoteTimestamp = vote.timestamp;
