@@ -42,7 +42,7 @@ app.post(
 
     //if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return console.info(vote);
 
-    if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400) {
+    if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) < 86400) {
       vote.Userstats.ComboVotes + 1;
       Userstats[vote.user].ComboVotes = +1;
       comboVotes = Userstats[vote.user].ComboVotes;
