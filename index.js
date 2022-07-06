@@ -24,7 +24,7 @@ app.post(
 
     if (isUndefined(votedUser)) {
       Userstats[vote.user] = {
-        id: parseInt(vote.user),
+        id: vote.user,
         LastVoteTimestamp: 0,
         TotalVotes: 0,
         ComboVotes: 0,
