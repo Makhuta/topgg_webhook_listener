@@ -17,7 +17,7 @@ app.post(
     let AllVotes = await api.getVotes();
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
-    vote["Avatar"] = AllVotes.find((user) => user.id == vote.user);
+    vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
     let embed = require(join(__dirname, "src/embed.js"))(vote);
 
     if (vote.type == "test") {

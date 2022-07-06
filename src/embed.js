@@ -17,6 +17,6 @@ module.exports = function (vote) {
     .addField("Bot total votes:", vote.totalVotes, true)
 
     .setColor("RANDOM")
-    //.setThumbnail(`https://cdn.discordapp.com/avatars/${vote.user}`)
+    .setThumbnail(vote.Avatar)
     .setTimestamp();
 };
