@@ -7,6 +7,7 @@ module.exports = async function (vote) {
   if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400) {
     vote.Userstats.ComboVotes + 1;
     Userstats[vote.user].ComboVotes = +1;
+    comboVotes = Userstats[vote.user].ComboVotes;
   }
 
   if (vote.Userstats.existed) {
@@ -15,9 +16,7 @@ module.exports = async function (vote) {
     sql = `INSERT INTO userstats (id, lastvotetimestamp, totalvotes, combovotes) VALUES (${vote.user}, ${vote.timestamp}, 1, 1)`;
   }
   console.info(sql);
-  console.info(vote)
-  console.info(Userstats)
-  //await DBExecuter({sql})
+  await DBExecuter({ sql });
 
   Userstats[vote.user].LastVoteTimestamp = vote.timestamp;
   Userstats[vote.user].TotalVotes = +1;

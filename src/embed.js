@@ -10,7 +10,8 @@ module.exports = function (vote) {
     .addField("Bot:", `<@${vote.bot}>`, true)
     .addField("Voted at:", `<t:${vote.timestamp}:f>`, true)
     .addField("Can vote again at:", `<t:${nextVoteTimestamp}:R>`, true)
-    .addField("Total Votes:", `TBD`, true)
+    .addField("Total Votes:", vote.Userstats.TotalVotes, true)
+    .addField("Current VOte combo:", vote.Userstats.ComboVotes, true)
     .addField("Is weekend:", vote.isWeekend.replace("true", "✅").replace("false", "❌"), true)
     .addField("Bot total votes:", vote.totalVotes, true)
 
