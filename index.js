@@ -28,7 +28,7 @@ app.post(
     vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
     vote["Userstats"] = votedUser ? votedUser : { id: vote.user, LastVoteTimestamp: 0, TotalVotes: 0, ComboVotes: 0 };
 
-    if (Userstats[vote.user].Userstats.LastVoteTimestamp - vote.timestamp < 40000) return console.info(vote);
+    if (vote["Userstats"].Userstats.LastVoteTimestamp - vote.timestamp < 40000) return console.info(vote);
 
     Userstats[vote.user].Userstats.LastVoteTimestamp = vote.timestamp;
 
