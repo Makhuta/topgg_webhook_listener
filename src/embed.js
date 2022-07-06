@@ -14,7 +14,7 @@ module.exports = function (vote) {
       { name: "Can vote again at:", value: `test<t:${nextVoteTimestamp}:R>`, inline: true }
     )
 
-    .setColor("RANDOM")
+    //.setColor("RANDOM")
     .setThumbnail("https://cdn.discordapp.com/embed/avatars/0.png")
     .setImage("https://cdn.discordapp.com/embed/avatars/0.png")
     .setFooter("Hey its a footer", "https://cdn.discordapp.com/embed/avatars/0.png")
