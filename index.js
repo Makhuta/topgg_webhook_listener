@@ -44,7 +44,7 @@ app.post(
 
     if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) < 86400) {
       vote.Userstats.ComboVotes += 1;
-      Userstats[vote.user].ComboVotes += 1;
+      Userstats[vote.user].ComboVotes = vote.Userstats.ComboVotes;
       comboVotes = Userstats[vote.user].ComboVotes;
     }
 
