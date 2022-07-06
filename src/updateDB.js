@@ -6,12 +6,8 @@ module.exports = async function (vote) {
   let comboVotes;
   if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400) {
     vote.Userstats.ComboVotes + 1;
-    Userstats[vote.user].ComboVotes = +1;
+    Userstats[vote.user].ComboVotes = Userstats[vote.user].ComboVotes + 1;
     comboVotes = Userstats[vote.user].ComboVotes;
-  }
-
-  if (comboVotes <= 0) {
-    comboVotes = vote.timestamp;
   }
 
   if (vote.Userstats.existed) {
