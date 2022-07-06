@@ -7,12 +7,10 @@ module.exports = function (vote) {
     .setTitle(`Voted`)
     .setURL(`https://top.gg/bot/${process.env.TOPGGID}`)
     .setDescription(`<@${vote.user}> Voted for <@${vote.bot}>!`)
-    .addFields(
-      { name: "User:", value: `<@${vote.user}>`, inline: true },
-      { name: "Bot:", value: `<@${vote.bot}>`, inline: true },
-      { name: "Voted at:", value: `test<t:${timestamp}:f>`, inline: true },
-      { name: "Can vote again at:", value: `test<t:${nextVoteTimestamp}:R>`, inline: true }
-    )
+    .addField("User:", `<@${vote.user}>`, true)
+    .addField("Bot:", `<@${vote.bot}>`, true)
+    .addField("Voted at:", `<t:${timestamp}:f>`, true)
+    .addField("Can vote again at:", `<t:${nextVoteTimestamp}:f>`, true)
 
     .setColor("RANDOM")
     .setThumbnail("https://cdn.discordapp.com/embed/avatars/0.png")
