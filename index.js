@@ -26,7 +26,7 @@ app.post(
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
     vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
-    vote["Userstats"] = votedUser || { id: vote.user, LastVoteTimestamp: 0, TotalVotes: 0, ComboVotes: 0 };
+    vote["Userstats"] = votedUser ? votedUser : { id: vote.user, LastVoteTimestamp: 0, TotalVotes: 0, ComboVotes: 0 };
 
     if (Userstats[vote.user].Userstats.LastVoteTimestamp - vote.timestamp < 40000) return console.info(vote);
 
