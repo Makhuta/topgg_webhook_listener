@@ -6,11 +6,16 @@ module.exports = async function (vote) {
   let comboVotes;
   if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400) {
     vote.Userstats.ComboVotes + 1;
-    Userstats[vote.user].ComboVotes = Userstats[vote.user].ComboVotes + 1;
+    Userstats[vote.user].ComboVotes = +1;
     comboVotes = Userstats[vote.user].ComboVotes;
   }
 
-  console.info({ 1: Userstats[vote.user].ComboVotes, 2: comboVotes });
+  console.info({
+    1: Userstats[vote.user].ComboVotes,
+    2: comboVotes,
+    3: Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) > 86400,
+    4: Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp)
+  });
 
   if (vote.Userstats.existed) {
     sql = `UPDATE userstats SET lastvotetimestamp = ${vote.timestamp}, totalvotes = ${vote.Userstats.TotalVotes + 1}, combovotes = ${comboVotes} WHERE id = ${vote.user}`;
