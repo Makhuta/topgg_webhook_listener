@@ -17,5 +17,6 @@ module.exports = function (vote) {
 
     .setColor("RANDOM")
     .setThumbnail(vote.Avatar)
+    .setFooter(vote.BotName, vote.BotAvatar)
     .setTimestamp();
 };

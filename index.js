@@ -35,11 +35,14 @@ app.post(
 
     let AllVotes = await api.getVotes();
     let Avatar = AllVotes.find((user) => user.id == vote.user)?.avatar;
+    let BotInfo = await api.getBot(process.env.TOPGGID);
     vote["timestamp"] = timestamp;
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
     vote["Userstats"] = votedUser;
     vote["Avatar"] = Avatar.replace("images", "cdn").replace("net", "com");
+    vote["BotAvatar"] = `https://cdn.discordapp.com/avatars/${process.env.TOPGGID}/${BotInfo.avatar}.png?size=512`
+    vote["BotName"] = BotInfo.username
 
     if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return;
 
