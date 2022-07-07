@@ -34,11 +34,17 @@ app.post(
     }
 
     let AllVotes = await api.getVotes();
+    let Avatar = AllVotes.find((user) => user.id == vote.user)?.avatar;
     vote["timestamp"] = timestamp;
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
-    vote["Avatar"] = AllVotes.find((user) => user.id == vote.user)?.avatar;
     vote["Userstats"] = votedUser;
+
+    if (Avatar.split("/")[Avatar.split("/").length - 1].split(".")[0].split("").length < 5) {
+      vote["Avatar"] = Avatar.replace("images", "cdn");
+    } else {
+      vote["Avatar"] = Avatar;
+    }
 
     if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return;
 
