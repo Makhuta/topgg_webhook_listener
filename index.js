@@ -39,12 +39,7 @@ app.post(
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
     vote["Userstats"] = votedUser;
-
-    if (Avatar.split("/")[Avatar.split("/").length - 1].split(".")[0].split("").length < 5) {
-      vote["Avatar"] = Avatar.replace("images", "cdn");
-    } else {
-      vote["Avatar"] = Avatar;
-    }
+    vote["Avatar"] = Avatar.replace("images", "cdn").replace("net", "com");
 
     if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return;
 
