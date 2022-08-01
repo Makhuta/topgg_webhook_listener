@@ -44,7 +44,7 @@ app.post(
     vote["BotAvatar"] = `https://cdn.discordapp.com/avatars/${process.env.TOPGGID}/${BotInfo.avatar}.png?size=512`
     vote["BotName"] = BotInfo.username
 
-    if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return;
+    if (Math.abs(vote["Userstats"].LastVoteTimestamp - vote.timestamp) < 40000) return console.info("Skipping Top.gg retry.");
 
     if (Math.abs(vote.Userstats.LastVoteTimestamp - vote.timestamp) < 86400) {
       vote.Userstats.ComboVotes += 1;
