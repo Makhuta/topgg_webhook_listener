@@ -9,9 +9,9 @@ module.exports = function (info) {
     .setThumbnail("https://cdn.discordapp.com/avatars/579640349857677362/5b14903391aaae4a37f6e224ecf7f92d.png?size=512")
     .setFooter("Maveric", "https://cdn.discordapp.com/avatars/579640349857677362/5b14903391aaae4a37f6e224ecf7f92d.png?size=512")
     .setTimestamp();
-  if (infoFormatted.State == "crashed") {
+  if (info.State == "crashed") {
     embed.addField("Crashed at:", `<t:${timestamp}:f>`, true);
-  } else if (infoFormatted.State == "up") {
+  } else if (info.State == "up") {
     embed.addField("Online since:", `<t:${timestamp}:R>`, true);
   }
 
