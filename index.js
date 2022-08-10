@@ -72,12 +72,10 @@ app.post(
 
 app.post("/maveric-stats", (req, res) => {
   let infoFormatted = {
-    State: req.data.state,
-    Action: req.action,
+    State: req.body.data.state,
+    Action: req.body.action,
     Skip: false
   };
-
-  console.info(infoFormatted)
 
   if (infoFormatted.State == "crashed") {
     infoFormatted["Type"] = "Crashed";
