@@ -77,6 +77,8 @@ app.post("/maveric-stats", (req, res) => {
     Skip: false
   };
 
+  console.info(infoFormatted)
+
   if (infoFormatted.State == "crashed") {
     infoFormatted["Type"] = "Crashed";
   } else if (infoFormatted.State == "up") {
