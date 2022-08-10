@@ -1,5 +1,6 @@
 const { join } = require("path");
 const express = require("express");
+const bodyParser = require("body-parser")
 require("dotenv").config();
 const { Webhook, Api } = require(`@top-gg/sdk`);
 const discordWebhook = require("discord-webhook-node");
@@ -16,6 +17,7 @@ const app = express();
 const wh = new Webhook(process.env.WEBHOOKAUTH);
 const api = new Api(process.env.TOPGGTOKEN);
 
+app.use(bodyParser.json())
 app.post(
   "/dblwebhook",
   wh.listener(async (vote) => {
@@ -66,6 +68,12 @@ app.post(
     }
   })
 );
+
+app.post("/maveric-stats", (req,res) => {
+  console.info(req.body)
+
+  res.status(200).end()
+})
 
 app.listen(port, () => {
   require(join(SRC, "dbinit.js"));
