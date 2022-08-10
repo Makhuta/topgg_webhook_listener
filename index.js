@@ -72,7 +72,7 @@ app.post(
 
 app.post("/maveric-stats", (req, res) => {
   let infoFormatted = {
-    State: req.readableAborted.state,
+    State: req.data.state,
     Action: req.action,
     Skip: false
   };
