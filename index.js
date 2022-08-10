@@ -86,6 +86,8 @@ app.post("/maveric-stats", (req, res) => {
     infoFormatted["Skip"] = true;
   }
 
+  console.info(infoFormatted)
+
   if (!infoFormatted.Skip) {
     let embed = require(join(SRC, "StatEmbed.js"))(infoFormatted);
     StatsHook.send(embed);
