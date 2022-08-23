@@ -43,7 +43,7 @@ app.post(
     vote["isWeekend"] = (await api.isWeekend()).toString();
     vote["totalVotes"] = AllVotes.length;
     vote["Userstats"] = votedUser;
-    vote["Avatar"] = Avatar.replace("images", "cdn").replace("net", "com");
+    vote["Avatar"] = Avatar ? Avatar.replace("images", "cdn").replace("net", "com") : `https://cdn.discordapp.com/embed/avatars/1.png`;
     vote["BotAvatar"] = `https://cdn.discordapp.com/avatars/${process.env.TOPGGID}/${BotInfo.avatar}.png?size=512`;
     vote["BotName"] = BotInfo.username;
 
@@ -85,8 +85,6 @@ app.post("/maveric-stats", (req, res) => {
     infoFormatted["Type"] = "Unknown";
     infoFormatted["Skip"] = true;
   }
-
-  console.info(infoFormatted)
 
   if (!infoFormatted.Skip) {
     let embed = require(join(SRC, "StatEmbed.js"))(infoFormatted);
