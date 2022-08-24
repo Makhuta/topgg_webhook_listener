@@ -11,6 +11,7 @@ const hookTest = new discordWebhook.Webhook(process.env.DISCORDWEBHOOKURLTEST);
 global.ROOT = __dirname;
 global.SRC = join(ROOT, "src");
 global.Userstats = {};
+global.InfoCache = {}
 
 const port = process.env.PORT || 3000;
 
@@ -86,8 +87,12 @@ app.post("/maveric-stats", (req, res) => {
     infoFormatted["Skip"] = true;
   }
 
+  InfoCache[Date.now()] = infoFormatted
+
   if (!infoFormatted.Skip) {
     let embed = require(join(SRC, "StatEmbed.js"))(infoFormatted);
+    console.info(InfoCache)
+    InfoCache = {}
     StatsHook.send(embed);
   }
 
